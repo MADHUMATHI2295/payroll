@@ -312,6 +312,7 @@
   <script src="../js/jquery.hotkeys.js"></script>
   <script src="../js/bootstrap-wysiwyg.js"></script>
   <script src="../js/bootstrap-wysiwyg-custom.js"></script>
+  
   <script src="../js/moment.js"></script>
   <script src="../js/bootstrap-colorpicker.js"></script>
   <script src="../js/daterangepicker.js"></script>

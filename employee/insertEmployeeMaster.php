@@ -26,12 +26,9 @@ function removeBlank($dateVal) {
 
 # Get JSON as a string
 $json_str = file_get_contents('php://input');
-$results[] = $row;
-var_dump(results);
-//var_dump(json_decode($json));
-//$results = json_decode($json_str, true);
-
-echo $results;
+// var_dump(json_decode($json_str));
+$results = json_decode($json_str, true);
+//echo $results;
 
 include '../common/SqlConnection.php';
 
@@ -46,7 +43,7 @@ $empid = $row['EmpID'];
 
 
     //insert
-$sql = "Insert into EmployeeMaster (EmpID,FirstName " . checkBlank("MiddleName", $results)
+$sql1 = "Insert into EmployeeMaster (EmpID,FirstName " . checkBlank("MiddleName", $results)
 . ",LastName" . checkBlank("Initials",$results) . ",FatherName,SpouseName,DOB,CompanyID,Department,BusinessTitle,
 JoiningDate,JobBand,MobileNo,AlternateContactNo,PAN,AADHAAR,PF_UAN,PassportNo,
 Active " . checkBlank("ResignationDate", $results) . checkBlank("LeavingDate", $results) .") 
@@ -61,19 +58,23 @@ $results['PF_UAN'] . "','" . $results['PassportNo'] . "','" .
 $results['Active'] . "'" . removeBlank($results['ResignationDate'])  .
 removeBlank( $results['LeavingDate']) . ")";
 
-$result = $conn->query($sql);
-if (mysqli_query($conn, $sql)) {
+$result1 = $conn->query($sql1);
+
+if ($result1 == 1) {
+    $Salempid = $empid;
+    $query="insert into salarymaster(EmpID) values($Salempid)";
+    $result2 = $conn->query($query);
     echo "New record created successfully";
 } else {
-    echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+    echo "Error: " . $sql1 . "<br>" . mysqli_error($conn);
 }
 
 
-
+//insert one empty record in salarymaster with the empid..
     
-echo $sql;
+//echo $sql;
 
-echo $result;
+//echo $result;
 
 $conn->close();
 

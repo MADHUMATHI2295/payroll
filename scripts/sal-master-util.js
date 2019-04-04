@@ -130,6 +130,7 @@ $( document ).ready(function() {
 
     var act = GetQueryStringParams('action');
 
+    
    
     $( "#txtSearch" ).change(function() {
       
@@ -151,6 +152,9 @@ $( document ).ready(function() {
         }
 
     });
+
+    $( "#btnSave" ).click(function() {
+
         var tmp = $('#lblEmpID').text();
 
         var myObj = {};
@@ -164,7 +168,7 @@ $( document ).ready(function() {
         myObj['PFDeductionEmployer'] = $('#txtPFEmployer').val();
         myObj['PFDeductionEmployee'] = $('#txtPFEmployee').val();
         myObj['PayPeriodType'] = $('#selPayPeriodType').val();
-        myObj['CTC'] = $('#CTC').val();
+        myObj['CTC'] = $('#txtCTC').val();
        
         console.log(myObj);
 
@@ -184,7 +188,7 @@ $( document ).ready(function() {
         else
         {
             $.ajax({
-                url:"../employee/updateEmployeeMaster.php", //the page containing php script
+                url:"../salary/updateSalaryMaster.php", //the page containing php script
                 type: "post", //request type,
                 dataType: 'text',
                 data: JSON.stringify(myObj),
@@ -195,6 +199,7 @@ $( document ).ready(function() {
             });
 
         }
+    });
 
 
 });
