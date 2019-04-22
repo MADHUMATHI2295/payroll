@@ -8,30 +8,34 @@ $json_str = file_get_contents('php://input');
 $results = json_decode($json_str, true);
 
 include '../common/SqlConnection.php';
+$sql = "select EmpID from SalaryMaster Where EmpID = '" . $results['EmpID'] . "'";
 
-//get the new emp id max + 1
+$result = $conn->query($sql);
+$row = $result->fetch_assoc();
 
-//$sql = "select max(EmpID)+1 as EmpID from SalaryMaster";
-
-//$result = $conn->query($sql);
-//$row = $result->fetch_assoc();
-
-//$empid = $row['EmpID'];
+$empid = $row['EmpID'];
+echo  $empid ;
  
-$sql = " Update salarymaster SET BasicPay = '". $results['BasicPay'] . "',MedicalAllowance = '" . $results['MedicalAllowance'] . "',HRA = '" 
+$sql1 = " Update salarymaster SET BasicPay = '". $results['BasicPay'] . "',MedicalAllowance = '" . $results['MedicalAllowance'] . "',HRA = '" 
 . $results['HRA'] . "',SpecialAllowance = '" . $results['SpecialAllowance'] . "',ConveyanceAllowance = '" . $results['ConveyanceAllowance'] 
 . "',TelephoneAllowance = '" . $results['TelephoneAllowance'] . "',PFDeductionEmployer = '" . $results['PFDeductionEmployer'] 
 . "',PFDeductionEmployee = '" . $results['PFDeductionEmployee'] . "',PayPeriodType = '" 
 . $results['PayPeriodType'] . "',CTC = '" . $results['CTC'] ."' Where EmpID = '" . $results['EmpID'] . "'";
 
-$result = $conn->query($sql);
-if ($result == 1) {
+$result1 = $conn->query($sql1);
+if ($result1 == 1) {
+    $Workempid = $empid;
+    $Workperiod=$results['PayPeriodType'];
+    echo $Workperiod;
+    $query="insert into Workedunits(EmpID,Period) values('$Workempid','$Workperiod')";
+    echo $query;
+    $result2 = $conn->query($query);
     echo "Record updated successfully";
 } else {
     echo "Error updating record: " . $conn->error;
 }
 
-echo $sql;
+//echo $sql;
 
 $result = $conn->query($sql);
 

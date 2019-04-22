@@ -1,3 +1,4 @@
+
 <html>
 <head>
   <meta charset="utf-8">
@@ -7,7 +8,7 @@
   <meta name="keyword" content="Creative, Dashboard, Admin, Template, Theme, Bootstrap, Responsive, Retina, Minimal">
   <link rel="shortcut icon" href="../img/favicon.png">
 
-  <title>Salary Master</title>
+  <title>Salary Transactions</title>
 
   <!-- Bootstrap CSS -->
   <link href="../css/bootstrap.min.css" rel="stylesheet">
@@ -50,9 +51,6 @@
     <!--header start-->
     <?php include "../header.php";?>
     <!--header end-->
-   
-
-     
 
     <?php include '../sidebar.php';?>
     <!--main content start-->
@@ -63,13 +61,11 @@
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <div class="row">
-                                
-                                 <label  class="col-sm-4" id="lblEmpID">Employee ID</label>
-                                 <label class="col-sm-3" >Salary Master</label>
-                                 <label  class="col-sm-4"  id="lblEmpName"></label>
-                                 
-
-                                
+                                 <label class="col-sm-4" id="lblEmpID">Employee ID</label>
+                                 <label  class="col-sm-3" > SalaryTransactions</label>
+                                 <label   class="col-sm-4" id="lblMonth">Salary of Month</label>                               
+                            
+                            
                             <div class="widget-icons pull-right col-sm-1">
                                 <a href="#" class="wminimize"><i class="fa fa-chevron-up"></i></a>
                                 <a href="#" class="wclose"><i class="fa fa-times"></i></a>
@@ -77,6 +73,7 @@
                             <div class="clearfix"></div>
                         </div>
                         </div>
+                        
                         <div class="panel-body">
                             <div class="padd">
                                 <div class="form quick-post">
@@ -86,11 +83,15 @@
                                         <div class="form-group" >
                                             <label class="control-label col-lg-2" for="title">Basic pay</label>
                                             <div class="col-lg-2">
-                                                <input type="text" class="falert form-control"  id="txtBasicPay"  required />
+                                                <input type="text" class="falert form-control" id="txtBasicPay"  required />
                                             </div>
                                             <label class="control-label col-lg-2" for="title">Medical Allowance</label>
                                             <div class="col-lg-2">
                                                 <input type="text" class="falert form-control" id="txtMedicalAllowance"  required />
+                                            </div>
+                                            <label class="control-label col-lg-2" for="title">Arrears</label>
+                                            <div class="col-lg-2">
+                                                <input type="text" class="falert form-control" id="txtArrears"  required />
                                             </div>
                                         </div>
                                           
@@ -103,6 +104,10 @@
                                             <div class="col-lg-2">
                                                 <input type="text" class="falert form-control" id="txtSpecialAllowance" >
                                             </div>
+                                            <label class="control-label col-lg-2" for="title">Gross Salary</label>
+                                            <div class="col-lg-2">
+                                                <input type="text" class="falert form-control" id="txtGrossSalary" >
+                                            </div>
                                         </div>
                                         
                                         <div class="form-group" >
@@ -113,6 +118,10 @@
                                             <label class="control-label col-lg-2" for="title">Telephone Allowance</label>
                                             <div class="col-lg-2">
                                                 <input type="text" class="falert form-control" id="txtTelephoneAllowance">
+                                            </div>
+                                            <label class="control-label col-lg-2" for="title">ESI (Deduction)</label>
+                                            <div class="col-lg-2">
+                                                <input type="text" class="falert form-control" id="txtESIDeductions" >
                                             </div>
                                         </div>
                                         
@@ -125,33 +134,66 @@
                                             <div class="col-lg-2">
                                                 <input type="text" class="falert form-control" id="txtPFEmployee">
                                             </div>
+                                            <label class="control-label col-lg-2" for="title">TDS</label>
+                                            <div class="col-lg-2">
+                                                <input type="text" class="falert form-control" id="txtTDS" >
+                                            </div>
                                         </div>
                                         <div class="form-group" >
-                                        <label class="control-label col-lg-2">PayPeriodType</label>
+                                        <label class="control-label col-lg-2" for="title">Period</label>
                                             <div class="col-lg-2">
-                                                
-                                                <select class=" form-control" id="selPayPeriodType">
-                                                <option value="">- Chooses -</option>
-                                                  <?php
-                                                    $selectOption = "PayPeriodType";
-                                                    include "../common/fetchDropDowns.php";
-                                                    ?>
-                                                   
-                                                </select>
+                                                <input type="test" class=" form-control" id="txtPeriod">
                                                 </div>
-
-
                                             <label class="control-label col-lg-2" for="title">CTC</label>
                                             <div class="col-lg-2">
                                                 <input type="test" class="falert form-control" id="txtCTC">
                                             </div>
+                                            <label class="control-label col-lg-2" for="title">Advance</label>
+                                            <div class="col-lg-2">
+                                                <input type="text" class="falert form-control" id="txtAdvance" >
+                                            </div>
+                                        </div>
+                                        <div class="form-group" >
+                                            <label class="control-label col-lg-2" for="title">LOP</label>
+                                            <div class="col-lg-2">
+                                                <input type="text" class="falert form-control" id="txtLOP" required />
+                                            </div>
+                                            <label class="control-label col-lg-2" for="title">Total Deductions</label>
+                                            <div class="col-lg-2">
+                                                <input type="text" class="falert form-control" id="txtTotalDeductions">
+                                            </div>
+                                            <label class="control-label col-lg-2" for="title">Other Deductions</label>
+                                            <div class="col-lg-2">
+                                                <input type="text" class="falert form-control" id="txtOtherDeductions" >
+                                            </div>
+                                        </div>
+                                        <div class="form-group" >
+                                            <label class="control-label col-lg-2" for="title">Total Earnings</label>
+                                            <div class="col-lg-2">
+                                                <input type="text" class=" falert form-control" id="txtTotalEarnings" >
+                                            </div>
+                                            <label class="control-label col-lg-2" for="title">NetPay</label>
+                                            <div class="col-lg-2">
+                                                <input type="text" class="falert form-control" id="txtNetPay" >
+                                            </div>
+                                            <label class="control-label col-lg-2" for="title">Others</label>
+                                            <div class="col-lg-2">
+                                                <input type="text" class="falert form-control" id="txtOthers" >
+                                            </div>
+                                        </div>
+                                        <div class="form-group" >
+                                            <label class="control-label col-lg-2" for="title">PT Deductions</label>
+                                            <div class="col-lg-2">
+                                                <input type="text" class=" falert form-control" id="txtPTDeductions" >
+                                            </div>
+                                        
                                         </div>
                                         <!-- Buttons -->
                                         <div class="form-group">
                                         <!-- Buttons -->
                                         
                             
-                                            <div class="col-lg-6">
+                                            <div class="col-lg-10">
                                             <p class="form-control-static text-danger" id="pShow"></p>
                                             </div>
                         
@@ -231,7 +273,7 @@
 
   <!-- custome script for all page -->
   <script src="../js/scripts.js"></script>
-  <script src="../scripts/sal-master-util.js"></script>
+  <script src="../scripts/sal-trans-util.js"></script>
 
 
 </body>

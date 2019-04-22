@@ -7,7 +7,7 @@
   <meta name="keyword" content="Creative, Dashboard, Admin, Template, Theme, Bootstrap, Responsive, Retina, Minimal">
   <link rel="shortcut icon" href="../img/favicon.png">
 
-  <title>Salary Master</title>
+  <title>Work Days</title>
 
   <!-- Bootstrap CSS -->
   <link href="../css/bootstrap.min.css" rel="stylesheet">
@@ -50,9 +50,6 @@
     <!--header start-->
     <?php include "../header.php";?>
     <!--header end-->
-   
-
-     
 
     <?php include '../sidebar.php';?>
     <!--main content start-->
@@ -62,14 +59,11 @@
                 <div class="col-md-12 portlets">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <div class="row">
-                                
-                                 <label  class="col-sm-4" id="lblEmpID">Employee ID</label>
-                                 <label class="col-sm-3" >Salary Master</label>
-                                 <label  class="col-sm-4"  id="lblEmpName"></label>
-                                 
-
-                                
+                            <div class="row"> 
+                                 <label class="col-sm-4" id="lblEmpID">Employee ID</label>
+                                 <label class="col-sm-4" >Worked Units</label>
+                                   
+                            
                             <div class="widget-icons pull-right col-sm-1">
                                 <a href="#" class="wminimize"><i class="fa fa-chevron-up"></i></a>
                                 <a href="#" class="wclose"><i class="fa fa-times"></i></a>
@@ -82,70 +76,47 @@
                                 <div class="form quick-post">
 
                                     <form class="form-horizontal">
-                                    
-                                        <div class="form-group" >
-                                            <label class="control-label col-lg-2" for="title">Basic pay</label>
-                                            <div class="col-lg-2">
-                                                <input type="text" class="falert form-control"  id="txtBasicPay"  required />
-                                            </div>
-                                            <label class="control-label col-lg-2" for="title">Medical Allowance</label>
-                                            <div class="col-lg-2">
-                                                <input type="text" class="falert form-control" id="txtMedicalAllowance"  required />
-                                            </div>
-                                        </div>
                                           
                                         <div class="form-group" >
-                                            <label class="control-label col-lg-2" for="title">HRA</label>
+                                            
+                                            <label class="control-label col-lg-2" for="title">Period</label>
                                             <div class="col-lg-2">
-                                                <input type="text" class=" falert form-control" id="txtHRA" >
+                                                <input type="text" class="form-control" id="txtPeriod" >
                                             </div>
-                                            <label class="control-label col-lg-2" for="title">Special Allowance</label>
-                                            <div class="col-lg-2">
-                                                <input type="text" class="falert form-control" id="txtSpecialAllowance" >
-                                            </div>
-                                        </div>
-                                        
+                                            
+                                        </div><br>
                                         <div class="form-group" >
-                                            <label class="control-label col-lg-2" for="title">Conveyance Allowance</label>
-                                            <div class="col-lg-2">
-                                                <input type="text" class="falert form-control" id="txtConveyanceAllowance">
-                                            </div>
-                                            <label class="control-label col-lg-2" for="title">Telephone Allowance</label>
-                                            <div class="col-lg-2">
-                                                <input type="text" class="falert form-control" id="txtTelephoneAllowance">
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="form-group" >
-                                            <label class="control-label col-lg-2" for="title">PF (Employer Deduction)</label>
-                                            <div class="col-lg-2">
-                                                <input type="text" class="falert form-control" id="txtPFEmployer" required />
-                                            </div>
-                                            <label class="control-label col-lg-2" for="title">PF (Employee Deduction)</label>
-                                            <div class="col-lg-2">
-                                                <input type="text" class="falert form-control" id="txtPFEmployee">
-                                            </div>
-                                        </div>
-                                        <div class="form-group" >
-                                        <label class="control-label col-lg-2">PayPeriodType</label>
+                                        <label class="control-label col-lg-2">Month</label>
                                             <div class="col-lg-2">
                                                 
-                                                <select class=" form-control" id="selPayPeriodType">
-                                                <option value="">- Chooses -</option>
-                                                  <?php
-                                                    $selectOption = "PayPeriodType";
-                                                    include "../common/fetchDropDowns.php";
+                                                <select class="form-control" id="selMonth">
+                                                   
+                                                    <?php
+                                                    //$selectOption = "PayPeriodType";
+                                                    include "../common/fetchDropDownsWork.php";
                                                     ?>
                                                    
                                                 </select>
                                                 </div>
-
-
-                                            <label class="control-label col-lg-2" for="title">CTC</label>
+                                            </div><br>
+                                       
+                                        <div class="form-group" >
+                                        <label class="control-label col-lg-2" for="title">Worked Units</label>
                                             <div class="col-lg-2">
-                                                <input type="test" class="falert form-control" id="txtCTC">
+                                                <input type="text" class="form-control" id="txtWorkedUnits">
                                             </div>
-                                        </div>
+                                            <label class="control-label col-lg-2" for="title">Leave Units</label>
+                                            <div class="col-lg-2">
+                                                <input type="text" class="form-control" id="txtLeaveUnits">
+                                            </div>
+                                        </div><br>
+                                        <div class="form-group" >
+                                        <label class="control-label col-lg-2" for="title">Total Units</label>
+                                            <div class="col-lg-2">
+                                                <input type="text" class="form-control" id="txtTotalUnits">
+                                            </div>
+                                            
+                                        </div><br>
                                         <!-- Buttons -->
                                         <div class="form-group">
                                         <!-- Buttons -->
@@ -231,7 +202,7 @@
 
   <!-- custome script for all page -->
   <script src="../js/scripts.js"></script>
-  <script src="../scripts/sal-master-util.js"></script>
+  <script src="../scripts/worked-hours-util.js"></script>
 
 
 </body>

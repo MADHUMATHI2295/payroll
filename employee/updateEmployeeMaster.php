@@ -13,6 +13,17 @@ $json_str = file_get_contents('php://input');
 
 //var_dump(json_decode($json));
 $results = json_decode($json_str, true);
+// if($results === NULL && isset($_SESSION["emp_id"]))
+// {
+
+//     $results = $_SESSION["emp_id"];
+// }
+// else if($results != NULL)
+// {
+//     $_SESSION["emp_id"] =$results;
+// }
+// if($results != NULL)
+// {
 
 include '../common/SqlConnection.php';
 
@@ -47,6 +58,7 @@ echo $sql;
 $result = $conn->query($sql);
 
 $conn->close();
+//}
 
 
 

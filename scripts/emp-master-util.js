@@ -88,7 +88,7 @@ function fetchData(myObj)
                 {
                     var json = $.parseJSON(response);
                     $(json).each(function(i,myObj) {
-                            $('#lblEmpID').text("Employee ID : " + myObj['EmpID']);
+                            $('#lblEmpID').text(myObj['EmpID']);
                             $('#txtFirstName').val(myObj['FirstName']);
                             $('#txtMiddleName').val(myObj['MiddleName']);
                             $('#txtLastName').val(myObj['LastName']);
@@ -192,7 +192,8 @@ $( document ).ready(function() {
     $('#dpDOB').datepicker().datepicker('setDate','');
     $('#dpResignationDate').datepicker().datepicker('setDate','');
     $('#dpLeavingDate').datepicker().datepicker('setDate','');
-    
+
+      
     $( "#txtSearch" ).change(function() {
       
         var bn = $("#txtSearch").val();
@@ -202,7 +203,7 @@ $( document ).ready(function() {
             
             var myObj = {};
             myObj['EmpID'] = $("#txtSearch").val();
-            
+           
 
             fetchData(myObj);
 
@@ -363,6 +364,6 @@ $( document ).ready(function() {
 
     });
    
-    
+    //fetchData();
 });
 

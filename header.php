@@ -12,7 +12,7 @@
         <ul class="nav top-menu">
           <li>
             
-              <input class="form-control" id="txtSearch" placeholder="Search EmpID" type="text">
+              <input class="form-control" id="txtSearch" placeholder="Search EmpID" type="text" >
             
           </li>
         </ul>

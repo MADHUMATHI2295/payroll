@@ -7,7 +7,24 @@ $json_str = file_get_contents('php://input');
 //var_dump(json_decode($json));
 $results = json_decode($json_str, true);
 
-//echo $results['BP'] . " ". $results['ticket'] . " ". $results['rate'];
+//echo "ontop of fetchemp.php " . $results['EmpID'] ;
+
+// Set session variables
+
+// if($results === NULL && isset($_SESSION["emp_id"]))
+// {
+//     $results['EmpID']  = $_SESSION["emp_id"];
+// }
+
+// else if($results != NULL)
+// {
+//     $_SESSION["emp_id"] = $results['EmpID'] ;
+// }
+
+
+// if($results != NULL)
+// {
+
 
 include '../common/SqlConnection.php';
 //select the row which has this date and busnumber if it is there...
@@ -27,5 +44,5 @@ if ($result->num_rows > 0) {
 }
 $conn->close();
 
-
+//}
 ?>

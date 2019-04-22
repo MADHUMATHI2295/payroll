@@ -62,6 +62,7 @@ $result1 = $conn->query($sql1);
 
 if ($result1 == 1) {
     $Salempid = $empid;
+    //$_SESSION["EmpID"]=$empid;
     $query="insert into salarymaster(EmpID) values($Salempid)";
     $result2 = $conn->query($query);
     echo "New record created successfully";

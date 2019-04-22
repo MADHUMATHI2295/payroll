@@ -29,6 +29,27 @@
                           <span>Salary Master</span>
             </a>
           </li>
+          <li>
+            <a class="" href="../salarytransaction/SalaryTransaction.php">
+            <i class="icon_document_alt"></i>
+                          <span>Salary Transaction</span>
+            </a>
+          </li>
+
+
+          <li>
+            <a class="" href="../workedunits/Workedhours.php">
+            <i class="icon_document_alt"></i>
+                          <span>Worked Units</span>
+            </a>
+          </li>
+
+          <li>
+            <a class="" href="../salary/UserAdmin.php">
+            <i class="icon_document_alt"></i>
+                          <span>User Admin</span>
+            </a>
+          </li>
           
           
           <li class="sub-menu">

@@ -53,7 +53,7 @@ function fetchSalDetails(myObj)
 {
     $.ajax({
             
-        url:"../salary/fetchSalaryDetails.php", //the page containing php script to check
+        url:"../salarytransaction/fetchSalaryTransaction.php", //the page containing php script to check
         type: "post", //request type,
         dataType: 'text',
         data: JSON.stringify(myObj),
@@ -62,31 +62,60 @@ function fetchSalDetails(myObj)
                 if (!response.includes("nothing"))
                 {
                     var json = $.parseJSON(response);
-                    $(json).each(function(i,myObj){
+                    $('#lblMonth').text("Salary of Month : " + json.month[0]['Month']);
+                    $(json.salaryTransaction).each(function(i,myObj){ 
+                        if(myObj.Freeze == 'yes'){
+                            $('#txtBasicPay').attr('readonly',true)
+                            $('#txtMedicalAllowance').attr('readonly',true)
+                            $('#txtHRA').attr('readonly',true)
+                            $('#txtSpecialAllowance').attr('readonly',true)
+                            $('#txtConveyanceAllowance').attr('readonly',true)
+                            $('#txtTelephoneAllowance').attr('readonly',true)
+                            $('#txtPFEmployer').attr('readonly',true)
+                            $('#txtPFEmployee').attr('readonly',true)
+                            $('#txtPeriod').attr('readonly',true)
+                            $('#txtCTC').attr('readonly',true)
+                            $('#txtArrears').attr('readonly',true)
+                            $('#txtGrossSalary').attr('readonly',true)
+                            $('#txtESIDeductions').attr('readonly',true)
+                            $('#txtTDS').attr('readonly',true)
+                            $('#txtAdvance').attr('readonly',true)
+                            $('#txtLOP').attr('readonly',true)
+                            $('#txtOtherDeductions').attr('readonly',true)
+                            $('#txtTotalDeductions').attr('readonly',true)
+                            $('#txtNetPay').attr('readonly',true)
+                            $('#txtTotalEarnings').attr('readonly',true)
+                            $('#txtPTDeductions').attr('readonly',true)
+                            $('#txtOthers').attr('readonly',true)
+                        }
                         
-                                $('#lblEmpID').text("Employee ID  : " + myObj['EmpID']);
-                                $('#lblEmpName').text("Employee Name  : " + myObj['EmpName']);
+                                $('#lblEmpID').text( myObj['EmpID']); 
                                 $('#txtBasicPay').val(myObj['BasicPay']);
                                 $('#txtMedicalAllowance').val(myObj['MedicalAllowance']);
                                 $('#txtHRA').val(myObj['HRA']);
                                 $('#txtSpecialAllowance').val(myObj['SpecialAllowance']);
                                 $('#txtConveyanceAllowance').val(myObj['ConveyanceAllowance']);
                                 $('#txtTelephoneAllowance').val(myObj['TelephoneAllowance']);
-                                $('#txtPFEmployer').val(myObj['PFDeductionEmployer']);
-                                $('#txtPFEmployee').val(myObj['PFDeductionEmployee']);
-                                $('#selPayPeriodType').val(myObj['PayPeriodType']);
+                                $('#txtPFEmployer').val(myObj['PFDeductions']);
+                                $('#txtPFEmployee').val(myObj['PFDeductions1']);
+                                $('#txtPeriod').val(myObj['Period']);
                                 $('#txtCTC').val(myObj['CTC']);
-                               
-                            
-                        
-                      
-                        
+                                $('#txtArrears').val(myObj['Arrears']);
+                                $('#txtGrossSalary').val(myObj['GrossSalary']);
+                                $('#txtESIDeductions').val(myObj['ESIDeductions']);
+                                $('#txtTDS').val(myObj['TDS']);
+                                $('#txtAdvance').val(myObj['Advance']);
+                                $('#txtLOP').val(myObj['LOP']);
+                                $('#txtOtherDeductions').val(myObj['OtherDeductions']);
+                                $('#txtTotalDeductions').val(myObj['TotalDeductions']);
+                                $('#txtNetPay').val(myObj['NetPay']);
+                                $('#txtTotalEarnings').val(myObj['TotalEarnings']);
+                                $('#txtPTDeductions').val(myObj['PTDeductions']);  
+                                $('#txtOthers').val(myObj['Others']); 
                     });
                 }
                 else
-                    alert("Employee ID is invalid");
-                
-            
+                    alert("Employee ID is invalid");  
         }
     });
 
@@ -124,31 +153,26 @@ return true;
 }
 
 
-
-
-
 $( document ).ready(function() {
 
     var myObj = {};
     //addSelectOptions(myObj);
 
     var act = GetQueryStringParams('action');
-    
+
     
    
     $( "#txtSearch" ).change(function() {
       
-        //input date changed just check if there is a valid bus number selected
+        //enter employee id to fetch their details
 
         var bn = $("#txtSearch").val();
         console.log(bn);
         if (bn != null && bn > 1000)
         {
-            //need to check if there is record for the date and busnumber comibination
+           
             var myObj = {};
             myObj['EmpID'] = $("#txtSearch").val();
-            
-
             fetchSalDetails(myObj);
 
             console.log(bn);
@@ -156,30 +180,8 @@ $( document ).ready(function() {
         }
 
     });
-    // $('input.falert').keyup(function() {    
-    //     var d = $(this).attr('numeric');
-    // debugger;
-    //     var value = $(this).val();
-    //     var orignalValue = value;
-    //     value = value.replace(/[0-9]*/g, "");
-    
-    //     var msg = "Only Integer Values allowed.";
-    
-    //     if (d == 'decimal') {
-    //         value = value.replace(/\./, "");
-    //         
-    //     }
-    
-    //     if (value != '') {
-    //         orignalValue = orignalValue.replace(/([^0-9].*)/g, "")
-    //         $(this).val(orignalValue);
-    //         //alert(msg);
-    //        $(this).after('<span style="margin-left:5px;color:red;position:absolute;">' + msg + '</span>');
-    //     } else {
-    //         $(this).next('span').remove();
-    //     }
-    // });
 
+    
     $('input.falert').keyup(function(event) {
 
         // skip for arrow keys
@@ -193,11 +195,10 @@ $( document ).ready(function() {
           ;
         });
       });
-      
+
     
     
-   
-   
+    
     $( "#btnSave" ).click(function() {
        
         var tmp = $('#lblEmpID').text();
@@ -210,11 +211,22 @@ $( document ).ready(function() {
         myObj['SpecialAllowance'] = $('#txtSpecialAllowance').val();
         myObj['ConveyanceAllowance'] = $('#txtConveyanceAllowance').val();
         myObj['TelephoneAllowance'] = $('#txtTelephoneAllowance').val();
-        myObj['PFDeductionEmployer'] = $('#txtPFEmployer').val();
-        myObj['PFDeductionEmployee'] = $('#txtPFEmployee').val();
-        myObj['PayPeriodType'] = $('#selPayPeriodType').val();
+        myObj['PFDeductions'] = $('#txtPFEmployer').val();
+        myObj['PFDeduction1'] = $('#txtPFEmployee').val();
+        myObj['Period'] = $('#txtPeriod').val();
         myObj['CTC'] = $('#txtCTC').val();
-
+        myObj['Arrears'] = $('#txtArrears').val();
+        myObj['GrossSalary'] = $('#txtGrossSalary').val();
+        myObj['ESIDeductions'] = $('#txtESIDeductions').val();
+        myObj['TDS'] = $('#txtTDS').val();
+        myObj['Advance'] = $('#txtAdvance').val();
+        myObj['LOP'] = $('#txtLOP').val();
+        myObj['TotalDeductions'] = $('#txtTotalDeductions').val();
+        myObj['OtherDeductions'] = $('#txtOtherDedutions').val();
+        myObj['NetPay'] = $('#txtNetPay').val();
+        myObj['TotalEarnings'] = $('#txtTotalEarnings').val();
+        myObj['PTDeduction'] = $('#txtPTDedution').val();
+        //myObj['Freez'] = $('#txtFreez').val();
        
         console.log(myObj);
         
@@ -235,7 +247,7 @@ $( document ).ready(function() {
         else
         {
             $.ajax({
-                url:"../salary/updateSalaryMaster.php", //the page containing php script
+                url:"../salarytransaction /updateSalaryMaster.php", //the page containing php script
                 type: "post", //request type,
                 dataType: 'text',
                 data: JSON.stringify(myObj),
@@ -247,8 +259,8 @@ $( document ).ready(function() {
 
         }
     });
-
     //fetchSalDetails();
+
 });
    
     
